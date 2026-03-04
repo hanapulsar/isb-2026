@@ -6,7 +6,7 @@ ALPHABET = "АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ "
 
 def parse_arguments() -> argparse.Namespace:
     """
-    Adds and parses command-line    arguments
+    Adds and parses command-line arguments
 
     :return: Parsed command-line arguments namespace containing decrypt flag
     """
