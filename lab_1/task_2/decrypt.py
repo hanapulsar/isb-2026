@@ -33,15 +33,28 @@ def generate_key(text: str, reference_frequencies: dict) -> dict:
     :param reference_frequencies: Standard frequencies in russian language
     :return: Key
     """
-    # Count how often each char appears
+    text_frequencies = calculate_frequencies(text)
+
+    for char, freq in list(text_frequencies.items()):
+        print(f"{char} = {freq}")
+
+    return dict(zip(text_frequencies, reference_frequencies))
+
+
+def calculate_frequencies(text: str) -> dict:
+    """
+    Calculate frequencies from text
+    :param text: Input text
+    :return: Dictionary of frequencies
+    """
+    number_of_chars = len(text)
+    if number_of_chars == 0:
+        return {}
+
     text_count = Counter(text)
-    # Sort chars
-    text_sorted = [char for char, count in text_count.most_common()]
-    key_map = {}
-    # Create a dictionary using comparison with reference
-    for text_char, reference_char in zip(text_sorted, reference_frequencies):
-        key_map[text_char] = reference_char
-    return key_map
+    frequencies = {char: count / number_of_chars for char, count in text_count.items()}
+    sorted_frequencies = dict(sorted(frequencies.items(), key=lambda item: item[1], reverse=True))
+    return sorted_frequencies
 
 
 def decrypt_text(text: str, key_map: dict) -> str:
