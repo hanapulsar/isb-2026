@@ -25,6 +25,29 @@ def frequency_test(binary):
     return p_value
 
 
+def run_test(binary):
+    """
+    Runs test.
+    The purpose of the runs test is to determine whether the number of runs
+    of ones and zeros of various lengths is as expected for a random sequence.
+    :param binary: binary sequences to check.
+    :return: evaluated P-value.
+    """
+    n = len(binary)
+    zeta = binary.count('1') / n
+
+    if abs(zeta - 0.5) >= (2 / math.sqrt(n)):
+        return 0.0
+
+    v_n = 1
+    for i in range(n - 1):
+        if binary[i] != binary[i + 1]:
+            v_n += 1
+
+    p_value = math.erfc(abs(v_n - 2 * n * zeta * (1 - zeta)) / (2 * math.sqrt(2 * n) * zeta * (1 - zeta)))
+    return p_value
+
+
 def main() -> None:
     """
     Main function
