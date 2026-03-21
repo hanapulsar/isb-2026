@@ -3,7 +3,8 @@
 #include <random>
 
 int main() {
-	std::ofstream file("cpp_random.txt");
+	std::string filename = "cpp_random.txt";
+	std::ofstream file(filename);
 
 	if (!file.is_open()) {
 		std::cerr << "Cant open txt to write in random sequence.\n";
@@ -19,7 +20,7 @@ int main() {
 	}
 
 	file.close();
-	std::cout << "Sequence was generated and writed in cpp_random.txt" << std::endl;
+	std::cout << "Sequence was generated and written to " << filename << std::endl;
 
 	return 0;
 }
