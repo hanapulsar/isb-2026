@@ -32,7 +32,7 @@ def runs_test(binary: str) -> float:
     if abs(zeta - 0.5) >= (2 / math.sqrt(n)):
         return 0.0
 
-    v_n = 1
+    v_n = 0
     for i in range(n - 1):
         if binary[i] != binary[i + 1]:
             v_n += 1
